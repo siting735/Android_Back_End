@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+<!--    <context:component-scan base-package="com.kuang.service"/>-->
+    <bean id="activityServiceImpl" class="com.kuang.service.ActivityServiceImpl">
+        <property name="activityMapper" ref="activityMapper"/>
+    </bean>
+    <bean class="com.kuang.service.ClassStudentServiceImpl" id="classStudentServiceImpl">
+        <property name="classStudentMapper" ref="classStudentMapper"/>
+    </bean>
+    <bean class="com.kuang.service.ClassTeacherServiceImpl" id="classTeacherServiceImpl">
+        <property name="classTeacherMapper" ref="classTeacherMapper"/>
+    </bean>
+    <bean class="com.kuang.service.SignServiceImpl" id="signServiceImpl">
+        <property name="signMapper" ref="signMapper"/>
+    </bean>
+    <bean class="com.kuang.service.StudentServiceImpl" id="studentServiceImpl">
+        <property name="studentMapper" ref="studentMapper"/>
+    </bean>
+    <bean class="com.kuang.service.TeacherServiceImpl" id="teacherServiceImpl">
+        <property name="teacherMapper" ref="teacherMapper"/>
+    </bean>
+<!--    事务-->
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>
