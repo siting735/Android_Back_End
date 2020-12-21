@@ -10,6 +10,7 @@ import com.kuang.pojo.Teacher;
 import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -25,6 +26,16 @@ public class TeacherServiceImpl {
     @Autowired
     private ClassMapper classMapper;
 
+    public Map<String,Object> signRitoOfStudentsByClassId(@RequestParam("classId") int classId) {
+
+        return null;
+    }
+    public Map<String,Object> teacherClasses(int teacherId){
+        List<Class> classes = classMapper.queryClassByTeacherId(teacherId);
+        Map<String,Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("classInfos",classes);
+        return resultMap;
+    }
     public Map<String,Object> teacherLoginHandle(String name,String password){
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("loginState",null);

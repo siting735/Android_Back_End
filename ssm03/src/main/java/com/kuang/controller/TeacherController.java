@@ -18,9 +18,22 @@ public class TeacherController {
     @Autowired
     private TeacherServiceImpl teacherServiceImpl;
 
+
+    @ResponseBody
+    @RequestMapping("signRitoOfStudents")
+    public Map<String,Object> signRitoOfStudents(@RequestParam("classId") int classId){
+        return teacherServiceImpl.signRitoOfStudentsByClassId(classId);
+    }
+
+    @ResponseBody
+    @RequestMapping("teacherClasses")
+    public Map<String,Object> teacherClasses(@RequestParam("teacherId") int teacherId){
+        return teacherServiceImpl.teacherClasses(teacherId);
+    }
+
     @ResponseBody
     @RequestMapping("login")
-    public Map<String,Object> login(@RequestParam("name") String name, @RequestParam("password") String password){
+    public Map<String,Object> login(@RequestParam("username") String name, @RequestParam("password") String password){
         Map<String,Object> map = teacherServiceImpl.teacherLoginHandle(name,password);
         return map;
     }
