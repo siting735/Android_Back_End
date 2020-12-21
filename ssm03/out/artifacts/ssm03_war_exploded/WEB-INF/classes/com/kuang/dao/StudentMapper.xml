@@ -5,6 +5,6 @@
 <mapper namespace="com.kuang.dao.StudentMapper">
     <!--    List<Student> queryAllStudent();-->
     <select id="queryAllStudent" resultType="student">
-        SELECT * FROM android.student;
+        SELECT * FROM student;
     </select>
 </mapper>
