@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.ClassMapper">
+<!--        List<Class> queryClassByTeacherId(int teacherId);-->
+    <select id="queryClassByTeacherId" resultType="class">
+        SELECT class.id as id,class.class_name class_name FROM class,class_teacher where class.id=class_teacher.class_id and class_teacher.teacher_id = #{teacherId};
+    </select>
+
+<!--    Class queryClassById(int id);-->
+    <select id="queryClassById" resultType="class">
+        SELECT * FROM class where id = #{id};
+    </select>
+</mapper>

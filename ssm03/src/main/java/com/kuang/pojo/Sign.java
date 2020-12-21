@@ -10,7 +10,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Sign {
-    private int activityId;
-    private int studentId;
+    private Integer id;
+    private Integer activityId;
+    private Integer studentId;
     private String device;
+
+    public Sign(Integer activityId, Integer studentId, String device) {
+        this.activityId = activityId;
+        this.studentId = studentId;
+        this.device = device;
+    }
 }

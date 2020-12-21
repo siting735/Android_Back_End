@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/context
        https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.kuang.dao"/>
+<!--    <context:component-scan base-package="com.kuang.dao"/>-->
 
     <!--1、关联数据库-->
     <context:property-placeholder location="classpath:database.properties"/>

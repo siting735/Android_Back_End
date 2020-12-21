@@ -4,4 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.TeacherMapper">
 
+<!--        Teacher queryTeacherByName(String name);-->
+    <select id="queryTeacherByName" resultType="teacher">
+        SELECT * FROM teacher where name = #{name};
+    </select>
+<!--    Teacher queryTeacherByMess(Map<String,String> map);-->
+    <select id="queryTeacherByMess" resultType="teacher">
+        SELECT * FROM teacher where name=#{name} and password = #{password};
+    </select>
 </mapper>

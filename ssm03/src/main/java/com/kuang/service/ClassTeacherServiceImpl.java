@@ -7,8 +7,4 @@ import org.springframework.stereotype.Service;
 public class ClassTeacherServiceImpl {
     @Autowired
     private ClassTeacherMapper classTeacherMapper;
-
-    public void setClassTeacherMapper(ClassTeacherMapper classTeacherMapper) {
-        this.classTeacherMapper = classTeacherMapper;
-    }
 }

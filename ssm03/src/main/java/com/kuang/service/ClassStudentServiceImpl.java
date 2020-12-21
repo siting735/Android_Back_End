@@ -8,8 +8,4 @@ import org.springframework.stereotype.Service;
 public class ClassStudentServiceImpl {
     @Autowired
     private ClassStudentMapper classStudentMapper;
-
-    public void setClassStudentMapper(ClassStudentMapper classStudentMapper) {
-        this.classStudentMapper = classStudentMapper;
-    }
 }

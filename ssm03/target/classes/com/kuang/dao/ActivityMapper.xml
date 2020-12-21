@@ -3,5 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.ActivityMapper">
+<!--        List<Activity> queryActivityInProgress(int classId);-->
+    <select id="queryActivityByClassIdAndState" parameterType="map" resultType="activity">
+        SELECT * FROM activity where class_id = #{classId} and state = #{state};
+    </select>
 
+
+<!--    List<Activity> queryAllActivityByClassId(int classId);-->
+    <select id="queryAllActivityByClassId" resultType="activity">
+        SELECT * FROM activity where class_id = #{classId};
+    </select>
 </mapper>
