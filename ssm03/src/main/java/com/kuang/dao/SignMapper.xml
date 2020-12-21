@@ -3,5 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.SignMapper">
-
+<!--    int insertSign(Sign sign);-->
+    <insert id="insertSign" parameterType="sign">
+        INSERT INTO `sign` (`activity_id`, `student_id`, `device`) VALUES (#{activityId},#{studentId},#{device});
+    </insert>
+<!--        Sign querySignBySign(Sign sign);-->
+    <select id="querySignBySign" parameterType="sign" resultType="sign">
+        SELECT * FROM sign where activity_id = #{activityId} and student_id=#{studentId} and device = #{device};
+    </select>
 </mapper>

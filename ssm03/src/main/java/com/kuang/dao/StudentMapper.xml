@@ -3,8 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.StudentMapper">
+<!--        Student queryStudentByStudentId(int studentId);-->
+    <select id="queryStudentByStudentId" resultType="student">
+        SELECT * FROM student where student_id = #{studentId};
+    </select>
     <!--    List<Student> queryAllStudent();-->
     <select id="queryAllStudent" resultType="student">
         SELECT * FROM student;
+
+    </select>
+<!--    Student queryStudentByName(String name);-->
+    <select id="queryStudentByName" resultType="student" parameterType="string">
+        SELECT * FROM student where name = #{name};
     </select>
 </mapper>
