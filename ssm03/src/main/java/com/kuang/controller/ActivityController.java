@@ -17,7 +17,6 @@ public class ActivityController {
     @Autowired
     private ActivityServiceImpl activityServiceImpl;
 
-
     @ResponseBody
     @RequestMapping("launchActivity")
     public Map<String,Object> launchActivity(@RequestParam("classId") int classId,

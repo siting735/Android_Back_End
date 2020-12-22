@@ -96,6 +96,7 @@ public class SignServiceImpl {
         }
         return result;
     }
+
     public Map<String,Object> studentSign(int studentId,String studentLongitude,String studentLatitude, String deviceId){
         Map<String,Object> resultMap = new HashMap<String, Object>();
         resultMap.put("signState",null);
@@ -128,9 +129,29 @@ public class SignServiceImpl {
                 //5、在activity中attendance_number+1
                 activityMapper.updateAttendanceNumberByActivityId(Integer.parseInt(map.get("activityId").toString()));
                 System.out.println("学生签到，活动表人数+1");
+                //6、学生表的出席次数+1
+                studentMapper.updateStudentAttendanceTime(studentId);
             }
         }
         return resultMap;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

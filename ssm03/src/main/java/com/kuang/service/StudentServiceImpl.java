@@ -47,9 +47,9 @@ public class StudentServiceImpl {
         Map<String,Object> resultMap = new HashMap<String, Object>();
         map.put("classId",classId);
         map.put("studentId",studentId);
-        //学生在场的活动title
+        //1、学生在场的活动title
         List<String> present  = handlerMapper.queryTitleByStudentIdPresent(map);
-        //学生不在场的活动
+        //2、学生不在场的活动
         List<String> notPresent = handlerMapper.queryTitleByStudentIdNotPresent(map);
         List<ActivityInfo> activityInfoList = new LinkedList<ActivityInfo>();
         for (String str:present) {
