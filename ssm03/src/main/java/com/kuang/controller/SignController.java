@@ -16,6 +16,18 @@ public class SignController {
     private SignServiceImpl signServiceImpl;
 
     @ResponseBody
+    @RequestMapping("changeSignToStop")
+    public Map<String,Object> changeSignToStop(@RequestParam("activityId")int activityId,@RequestParam("classId") int classId){
+        return signServiceImpl.changeSignToStop(activityId,classId);
+    }
+
+    @ResponseBody
+    @RequestMapping("manualSign")
+    public Map<String,Object> manualSign(@RequestParam("activityId") int activityId,@RequestParam("studentId") int studentId){
+        return signServiceImpl.manualSign(activityId,studentId);
+    }
+
+    @ResponseBody
     @RequestMapping("studentSign")
     public Map<String,Object> studentSign(@RequestParam("studentId") int studentId,
                                           @RequestParam("studentLongitude") String studentLongitude,

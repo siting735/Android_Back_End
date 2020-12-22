@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ClassStudentMapper {
     ClassStudent queryClassStudentByStudentId(int studentId);
-
+    Integer queryStudentCountByClassId(int classId);
 }

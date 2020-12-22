@@ -1,5 +1,6 @@
 package com.kuang.controller;
 
+import com.kuang.pojo.Activity;
 import com.kuang.service.ActivityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,16 @@ import java.util.Map;
 public class ActivityController {
     @Autowired
     private ActivityServiceImpl activityServiceImpl;
+
+
+    @ResponseBody
+    @RequestMapping("launchActivity")
+    public Map<String,Object> launchActivity(@RequestParam("classId") int classId,
+                                             @RequestParam("activityTitle") String activityTitle,
+                                             @RequestParam("teacherLongitude") String teacherLongitude,
+                                             @RequestParam("teacherLatitude") String teacherLatitude){
+        return activityServiceImpl.launchActivity(classId,activityTitle,teacherLongitude,teacherLatitude);
+    }
 
     @RequestMapping("activityInProgress")
     @ResponseBody

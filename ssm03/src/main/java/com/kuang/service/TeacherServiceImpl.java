@@ -1,11 +1,9 @@
 package com.kuang.service;
 
-import com.kuang.dao.ClassMapper;
-import com.kuang.dao.ClassStudentMapper;
-import com.kuang.dao.ClassTeacherMapper;
-import com.kuang.dao.TeacherMapper;
+import com.kuang.dao.*;
 import com.kuang.pojo.Class;
 import com.kuang.pojo.ClassTeacher;
+import com.kuang.pojo.Student;
 import com.kuang.pojo.Teacher;
 import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +23,30 @@ public class TeacherServiceImpl {
     private ClassTeacherMapper classTeacherMapper;
     @Autowired
     private ClassMapper classMapper;
+    @Autowired
+    private StudentMapper studentMapper;
+    @Autowired
+    private StudentServiceImpl studentServiceImpl;
 
+    //获取一个班级所有学生的签到情况
     public Map<String,Object> signRitoOfStudentsByClassId(@RequestParam("classId") int classId) {
-
-        return null;
+        Map<String,Object> resultMap =new HashMap<String, Object>();
+        //1、先查出班级的所有学生
+        List<Student> students = studentMapper.queryAllStudentByClassId(classId);
+        //2、查出一个学生的签到情况
+        //3、查出所有学生的签到情况
+        List<Map<String,Object>> list = new LinkedList<Map<String, Object>>();
+        for (Student student: students) {
+            Map<String, Object> map = studentServiceImpl.studentSignMessage(student.getStudentId());
+            System.out.println(map);
+            Map<String,Object> map1 = new HashMap<String, Object>();
+            map1.put("studentName",student.getName());
+            map1.put("studentId",student.getStudentId());
+            map1.put("signRito",map.get("signRito"));
+            list.add(map1);
+        }
+        resultMap.put("signRitoOfStudents",list);
+        return resultMap;
     }
     public Map<String,Object> teacherClasses(int teacherId){
         List<Class> classes = classMapper.queryClassByTeacherId(teacherId);
@@ -43,9 +61,9 @@ public class TeacherServiceImpl {
         map.put("teacherName",null);
         Teacher teacher = teacherMapper.queryTeacherByName(name);
         if (teacher == null){
-            map.put("loginState",2);
+            map.put("loginState",3);
         }else if(teacher.getPassword().equals(password)){   //登陆成功，获取教师的信息
-            map.put("loginState",1);
+            map.put("loginState",2);
             map.put("teacherId",teacher.getTeacherId());
             map.put("teacherName",teacher.getName());
             List<Class> classes = classMapper.queryClassByTeacherId(teacher.getTeacherId());
@@ -58,7 +76,7 @@ public class TeacherServiceImpl {
             }
             map.put("classesInfo",maps);
         }else{
-            map.put("loginState",3);
+            map.put("loginState",4);
         }
         return map;
     }

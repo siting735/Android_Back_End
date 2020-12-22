@@ -61,7 +61,7 @@ public class StudentServiceImpl {
             activityInfoList.add(activityInfo);
         }
         signRito = Double.parseDouble(String.valueOf(present.size()))/
-                Double.parseDouble(String.valueOf(present.size()+notPresent.size()));
+                Double.parseDouble(String.valueOf(present.size()+notPresent.size()))*100;
         resultMap.put("signRito",signRito);
         resultMap.put("activityInfo",activityInfoList);
         return resultMap;
@@ -77,7 +77,7 @@ public class StudentServiceImpl {
         map.put("className",null);
         Student student = queryStudentByName(name);
         if(student == null){
-            map.put("loginState",2);
+            map.put("loginState",3);
         }else if(student.getPassword().equals(password)){
             map.put("loginState",1);
             //登陆成功获取信息
@@ -88,7 +88,7 @@ public class StudentServiceImpl {
             map.put("classId",aClass.getId());
             map.put("className",aClass.getClassName());
         }else {
-            map.put("loginState",3);
+            map.put("loginState",4);
         }
         return map;
     }
