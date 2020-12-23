@@ -1,7 +1,9 @@
 package com.kuang.service;
 
 import com.kuang.dao.ActivityMapper;
+import com.kuang.dao.ClassTeacherMapper;
 import com.kuang.pojo.Activity;
+import com.sun.javafx.fxml.builder.JavaFXFontBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,29 @@ import java.util.Map;
 public class ActivityServiceImpl {
     @Autowired
     private ActivityMapper activityMapper;
+    @Autowired
+    private ClassTeacherMapper classTeacherMapper;
+
+    public Map<String,Object> launchActivity(int classId,String activityTitle,
+                                             String teacherLongitude, String teacherLatitude){
+        Map<String,Object> resultMap = new HashMap<String, Object>();
+        String location = ""+teacherLongitude+","+teacherLatitude;
+        Activity activity = new Activity(activityTitle, location, classId, 1, 0);
+        int i = activityMapper.insertAndQueryActivity(activity);
+        //1、发布失败
+        if(i==0){
+            resultMap.put("activityState",0);
+            resultMap.put("activityId",0);
+        }
+        //2、发布成功
+        else {
+            resultMap.put("activityState",1);
+            resultMap.put("activityId",activity.getActivityId());
+            //3、更新班级教师表的活动数量
+            classTeacherMapper.updateActivityCount(classId);
+        }
+        return resultMap;
+    }
     public Map<String, Object> activityInProgress(int classId){
         Map<String,Object> map = new HashMap<String, Object>();
         Map<String,Object> resultMap = new HashMap<String, Object>();

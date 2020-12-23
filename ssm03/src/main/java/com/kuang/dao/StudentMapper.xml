@@ -3,6 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.StudentMapper">
+<!--    int updateStudentAttendanceTime(int studentId);-->
+    <update id="updateStudentAttendanceTime">
+        UPDATE `android1`.`student` SET `attendance_time` =`attendance_time` +1 WHERE (`student_id` = #{studentId});
+    </update>
+<!--        List<Student> queryAllStudentByClassId(int classId);-->
+    <select id="queryAllStudentByClassId" resultType="student">
+        SELECT student.student_id,student.name FROM class,student,class_student where
+        class.id=class_student.class_id and class_student.student_id = student.student_id
+        and class_student.class_id = #{classId};
+    </select>
 <!--        Student queryStudentByStudentId(int studentId);-->
     <select id="queryStudentByStudentId" resultType="student">
         SELECT * FROM student where student_id = #{studentId};

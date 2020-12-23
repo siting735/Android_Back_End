@@ -3,7 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.ActivityMapper">
-<!--        List<Activity> queryActivityInProgress(int classId);-->
+<!--        int updateActivityStateToStopByActivityId(int activityId);-->
+    <update id="updateActivityStateToStopByActivityId">
+        UPDATE `android1`.`activity` SET `state` = '0' WHERE (`activity_id` = #{activityId});
+    </update>
+    <!--        int updateAttendanceNumberByActivityId(int activityId);-->
+    <update id="updateAttendanceNumberByActivityId">
+        UPDATE `activity` SET `attendance_number` = `attendance_number` +1 WHERE (`activity_id` = #{activityId});
+    </update>
+<!--        Activity queryActivityByActivityId(int activityId);-->
+    <select id="queryActivityByActivityId" resultType="activity">
+        SELECT * FROM android1.activity where activity_id=#{activityId};
+    </select>
+
+<!--        Activity insertAndQueryActivity(Activity activity);-->
+    <insert id="insertAndQueryActivity" parameterType="activity" keyProperty="activityId" useGeneratedKeys="true" >
+        INSERT INTO `activity` (`title`, `location`, `class_id`, `state`,`attendance_number`) VALUES
+            (#{title},#{location},#{classId},#{state},#{attendanceNumber});
+    </insert>
+
+    <!--        List<Activity> queryActivityInProgress(int classId);-->
     <select id="queryActivityByClassIdAndState" parameterType="map" resultType="activity">
         SELECT * FROM activity where class_id = #{classId} and state = #{state};
     </select>

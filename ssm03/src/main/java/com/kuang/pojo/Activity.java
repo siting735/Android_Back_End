@@ -16,4 +16,12 @@ public class Activity {
     private int classId;
     private int state;
     private int attendanceNumber;
+
+    public Activity(String title, String location, int classId, int state, int attendanceNumber) {
+        this.title = title;
+        this.location = location;
+        this.classId = classId;
+        this.state = state;
+        this.attendanceNumber = attendanceNumber;
+    }
 }

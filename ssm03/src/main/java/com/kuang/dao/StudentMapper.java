@@ -8,6 +8,8 @@ import java.util.Map;
 
 @Mapper
 public interface StudentMapper {
+    int updateStudentAttendanceTime(int studentId);
+    List<Student> queryAllStudentByClassId(int classId);
     List<Student> queryAllStudent();
     Student queryStudentByName(String name);
     Student queryStudentByStudentId(int studentId);

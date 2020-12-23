@@ -26,7 +26,7 @@ public class StudentController {
 
     @ResponseBody
     @RequestMapping("login")
-    public Map<String,Object> login(@RequestParam("name") String name,@RequestParam("password") String password){
+    public Map<String,Object> login(@RequestParam("username") String name,@RequestParam("password") String password){
         Map<String, Object> stringObjectMap = studentServiceImpl.studentLoginHandle(name, password);
         return stringObjectMap;
     }

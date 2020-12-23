@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.ClassStudentMapper">
+<!--    int queryStudentCountByClassId(int classId);-->
+    <select id="queryStudentCountByClassId" resultType="java.lang.Integer">
+        SELECT count(id) as count FROM android1.class_student where class_id=#{classId};
+    </select>
 <!--        ClassStudent queryClassStudentByStudentId(int studentId);-->
     <select id="queryClassStudentByStudentId" resultType="classStudent">
         SELECT * FROM class_student where student_id = #{id};
