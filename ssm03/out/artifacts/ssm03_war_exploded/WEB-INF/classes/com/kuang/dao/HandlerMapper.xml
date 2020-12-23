@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.HandlerMapper">
+<!--         List<String> queryTitleByStudentIdNotPresent(Map<String,Object> map);-->
+    <select id="queryTitleByStudentIdNotPresent" resultType="string" parameterType="map">
+        SELECT activity.title FROM activity where activity.class_id = #{classId} and activity.title not in (
+	SELECT title FROM activity,sign where sign.activity_id = activity.activity_id and
+	activity.activity_id = sign.activity_id and class_id = #{classId} and student_id = #{studentId})
+    </select>
+
+
+<!--    List<String> queryTitleByStudentIdPresent(int studentId);-->
+    <select id="queryTitleByStudentIdPresent" parameterType="map" resultType="string">
+        SELECT title FROM activity,sign where sign.activity_id = activity.activity_id and
+        activity.activity_id = sign.activity_id and class_id = #{classId} and student_id = #{studentId};
+    </select>
+
+
+</mapper>
