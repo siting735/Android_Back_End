@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kuang.dao.ActivityMapper">
+<!--        Activity searchActivityInProcessByActivityId(Integer teacherId);-->
+    <select id="searchActivityInProcessByActivityId" resultType="activity">
+        SELECT * FROM activity,class_teacher where activity.class_id = class_teacher.class_id and state = 1 and teacher_id = #{teacherId};
+    </select>
 <!--        int updateActivityStateToStopByActivityId(int activityId);-->
     <update id="updateActivityStateToStopByActivityId">
         UPDATE `android1`.`activity` SET `state` = '0' WHERE (`activity_id` = #{activityId});
