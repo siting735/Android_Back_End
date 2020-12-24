@@ -17,6 +17,13 @@ public class ActivityController {
     @Autowired
     private ActivityServiceImpl activityServiceImpl;
 
+
+    @RequestMapping("searchActivityInProcess")
+    @ResponseBody
+    public Map<String,Object> searchActivityInProcess(@RequestParam("teacherId") Integer teacherId){
+        return activityServiceImpl.searchActivityInProcessByActivityId(teacherId);
+    }
+
     @ResponseBody
     @RequestMapping("launchActivity")
     public Map<String,Object> launchActivity(@RequestParam("classId") int classId,

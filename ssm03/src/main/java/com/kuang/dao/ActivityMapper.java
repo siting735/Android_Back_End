@@ -8,6 +8,7 @@ import java.util.Map;
 
 @Mapper
 public interface ActivityMapper {
+    Activity searchActivityInProcessByActivityId(Integer teacherId);
     int updateActivityStateToStopByActivityId(int activityId);
     int updateAttendanceNumberByActivityId(int activityId);
     Activity queryActivityByActivityId(int activityId);

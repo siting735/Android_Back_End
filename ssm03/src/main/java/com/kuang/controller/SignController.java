@@ -33,6 +33,7 @@ public class SignController {
                                           @RequestParam("studentLongitude") String studentLongitude,
                                           @RequestParam("studentLatitude") String studentLatitude,
                                           @RequestParam("deviceId") String deviceId){
+        System.out.println(studentLongitude + studentLatitude);
         return signServiceImpl.studentSign(studentId,studentLongitude,studentLatitude,deviceId);
     }
 }

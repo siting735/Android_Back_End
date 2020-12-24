@@ -6,6 +6,7 @@ import com.kuang.pojo.Activity;
 import com.sun.javafx.fxml.builder.JavaFXFontBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,21 @@ public class ActivityServiceImpl {
     private ActivityMapper activityMapper;
     @Autowired
     private ClassTeacherMapper classTeacherMapper;
+
+    public Map<String,Object> searchActivityInProcessByActivityId(Integer teacherId){
+        Map<String,Object> resultMap = new HashMap<String, Object>();
+        Activity activity = activityMapper.searchActivityInProcessByActivityId(teacherId);
+        if(activity!=null){
+            resultMap.put("activityId",activity.getActivityId());
+            resultMap.put("activityTitle",activity.getTitle());
+            resultMap.put("classId",activity.getClassId());
+            return resultMap;
+        }
+        resultMap.put("activityId","");
+        resultMap.put("activityTitle","");
+        resultMap.put("classId","");
+        return resultMap;
+    }
 
     public Map<String,Object> launchActivity(int classId,String activityTitle,
                                              String teacherLongitude, String teacherLatitude){
