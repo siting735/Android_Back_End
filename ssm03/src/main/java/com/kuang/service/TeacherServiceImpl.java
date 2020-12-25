@@ -42,7 +42,8 @@ public class TeacherServiceImpl {
             Map<String,Object> map1 = new HashMap<String, Object>();
             map1.put("studentName",student.getName());
             map1.put("studentId",student.getStudentId());
-            map1.put("signRito",Integer.parseInt(map.get("signRito").toString()));
+            double signRito = Double.parseDouble(map.get("signRito").toString());
+            map1.put("signRito",Math.round(signRito));
             list.add(map1);
         }
         resultMap.put("signRitoOfStudents",list);

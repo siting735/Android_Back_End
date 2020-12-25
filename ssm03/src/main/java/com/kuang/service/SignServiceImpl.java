@@ -63,7 +63,7 @@ public class SignServiceImpl {
         int classStudentCount = classStudentMapper.queryStudentCountByClassId(classId);
 //        System.out.println(attendanceNumber+"  "+classStudentCount);
         Double signRito = Double.parseDouble(String.valueOf(attendanceNumber))/Double.parseDouble(String.valueOf(classStudentCount))*100;
-        map.put("signRito",Integer.parseInt(signRito.toString()));
+        map.put("signRito",Math.round(signRito));
 
         //3、查询没有签到同学的名单
         Map<String,Integer> map1 = new HashMap<String, Integer>();
