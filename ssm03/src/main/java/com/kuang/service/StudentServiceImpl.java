@@ -62,7 +62,7 @@ public class StudentServiceImpl {
         }
         signRito = Double.parseDouble(String.valueOf(present.size()))/
                 Double.parseDouble(String.valueOf(present.size()+notPresent.size()))*100;
-        resultMap.put("signRito",signRito);
+        resultMap.put("signRito",Integer.parseInt(signRito.toString()));
         resultMap.put("activityInfo",activityInfoList);
         return resultMap;
     }

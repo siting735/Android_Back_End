@@ -42,7 +42,7 @@ public class TeacherServiceImpl {
             Map<String,Object> map1 = new HashMap<String, Object>();
             map1.put("studentName",student.getName());
             map1.put("studentId",student.getStudentId());
-            map1.put("signRito",map.get("signRito"));
+            map1.put("signRito",Integer.parseInt(map.get("signRito").toString()));
             list.add(map1);
         }
         resultMap.put("signRitoOfStudents",list);

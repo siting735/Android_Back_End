@@ -63,7 +63,7 @@ public class SignServiceImpl {
         int classStudentCount = classStudentMapper.queryStudentCountByClassId(classId);
 //        System.out.println(attendanceNumber+"  "+classStudentCount);
         Double signRito = Double.parseDouble(String.valueOf(attendanceNumber))/Double.parseDouble(String.valueOf(classStudentCount))*100;
-        map.put("signRito",signRito);
+        map.put("signRito",Integer.parseInt(signRito.toString()));
 
         //3、查询没有签到同学的名单
         Map<String,Integer> map1 = new HashMap<String, Integer>();
@@ -107,7 +107,7 @@ public class SignServiceImpl {
                                         Double.parseDouble(studentLongitude),
                                         Double.parseDouble(studentLatitude));
         //1、先判断符不符合范围
-        if(v>100){
+        if(v>200){
             resultMap.put("signState",0);
             System.out.println("学生里老师位置超出限制");
         }
