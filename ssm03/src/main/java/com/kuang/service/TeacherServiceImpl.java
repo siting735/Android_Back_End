@@ -1,19 +1,14 @@
 package com.kuang.service;
 
 import com.kuang.dao.*;
+import com.kuang.pojo.*;
 import com.kuang.pojo.Class;
-import com.kuang.pojo.ClassTeacher;
-import com.kuang.pojo.Student;
-import com.kuang.pojo.Teacher;
 import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class TeacherServiceImpl {
@@ -52,7 +47,12 @@ public class TeacherServiceImpl {
     public Map<String,Object> teacherClasses(int teacherId){
         List<Class> classes = classMapper.queryClassByTeacherId(teacherId);
         Map<String,Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("classInfos",classes);
+        List<ClassId> classIdList = new ArrayList<ClassId>();
+        for(Class c : classes){
+            ClassId classId = new ClassId(c.getId(),c.getClassName());
+            classIdList.add(classId);
+        }
+        resultMap.put("classInfos",classIdList);
         return resultMap;
     }
     public Map<String,Object> teacherLoginHandle(String name,String password){

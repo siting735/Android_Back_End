@@ -30,10 +30,11 @@ public class SignController {
     @ResponseBody
     @RequestMapping("studentSign")
     public Map<String,Object> studentSign(@RequestParam("studentId") int studentId,
-                                          @RequestParam("studentLongitude") String studentLongitude,
-                                          @RequestParam("studentLatitude") String studentLatitude,
+                                          @RequestParam("studentLongitude") Double studentLongitude,
+                                          @RequestParam("studentLatitude") Double studentLatitude,
                                           @RequestParam("deviceId") String deviceId){
+        System.out.println(studentId+"  "+deviceId);
         System.out.println(studentLongitude + studentLatitude);
-        return signServiceImpl.studentSign(studentId,studentLongitude,studentLatitude,deviceId);
+        return signServiceImpl.studentSign(studentId,studentLongitude.toString(),studentLatitude.toString(),deviceId);
     }
 }
