@@ -38,7 +38,9 @@ public class ActivityServiceImpl {
                                              String teacherLongitude, String teacherLatitude){
         Map<String,Object> resultMap = new HashMap<String, Object>();
         String location = ""+teacherLongitude+","+teacherLatitude;
-        Activity activity = new Activity(activityTitle, location, classId, 1, 0);
+        String substring = activityTitle.substring(0, 10)+" "+activityTitle.substring(10,activityTitle.length());
+        System.out.println("time:"+substring);
+        Activity activity = new Activity(substring, location, classId, 1, 0);
         int i = activityMapper.insertAndQueryActivity(activity);
         //1、发布失败
         if(i==0){
