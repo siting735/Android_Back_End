@@ -62,12 +62,12 @@ public class ActivityServiceImpl {
         map.put("classId",classId);
         map.put("state",1);
         List<Activity> activityList = activityMapper.queryActivityByClassIdAndState(map);
-        Activity activity = activityList.get(0);
         resultMap.put("activityId",null);
         resultMap.put("activityTitle",null);
         resultMap.put("teacherLongitude",null);
         resultMap.put("teacherLatitude",null);
-        if(activity != null){
+        if(activityList != null){
+            Activity activity = activityList.get(0);
             resultMap.put("activityId",activity.getActivityId());
             resultMap.put("activityTitle",activity.getTitle());
             String[] split = activity.getLocation().split(",");
