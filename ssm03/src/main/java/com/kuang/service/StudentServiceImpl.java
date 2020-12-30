@@ -52,17 +52,24 @@ public class StudentServiceImpl {
         //2、学生不在场的活动
         List<String> notPresent = handlerMapper.queryTitleByStudentIdNotPresent(map);
         List<ActivityInfo> activityInfoList = new LinkedList<ActivityInfo>();
-        for (String str:present) {
-            ActivityInfo activityInfo = new ActivityInfo(str, 1);
-            activityInfoList.add(activityInfo);
+        if(present!=null){
+            for (String str:present) {
+                ActivityInfo activityInfo = new ActivityInfo(str, 1);
+                activityInfoList.add(activityInfo);
+            }
         }
-        for (String str:notPresent) {
-            ActivityInfo activityInfo = new ActivityInfo(str, 0);
-            activityInfoList.add(activityInfo);
+        if(notPresent!=null){
+            for (String str:notPresent) {
+                ActivityInfo activityInfo = new ActivityInfo(str, 0);
+                activityInfoList.add(activityInfo);
+            }
         }
-        signRito = Double.parseDouble(String.valueOf(present.size()))/
-                Double.parseDouble(String.valueOf(present.size()+notPresent.size()))*100;
-        resultMap.put("signRito",Math.round(signRito));
+        if((present.size()+notPresent.size())==0) resultMap.put("signRito",0);
+        else{
+            signRito = Double.parseDouble(String.valueOf(present.size()))/
+                    Double.parseDouble(String.valueOf(present.size()+notPresent.size()))*100;
+            resultMap.put("signRito",Math.round(signRito));
+        }
         resultMap.put("activityInfo",activityInfoList);
         return resultMap;
     }

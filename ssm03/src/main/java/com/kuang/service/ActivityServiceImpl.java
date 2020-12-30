@@ -67,7 +67,9 @@ public class ActivityServiceImpl {
         resultMap.put("activityTitle",null);
         resultMap.put("teacherLongitude",null);
         resultMap.put("teacherLatitude",null);
-        if(activity != null){
+
+        if(activityList.size() >=1 ){
+            Activity activity = activityList.get(0);
             resultMap.put("activityId",activity.getActivityId());
             resultMap.put("activityTitle",activity.getTitle());
             String[] split = activity.getLocation().split(",");
