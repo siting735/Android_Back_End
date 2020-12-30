@@ -122,7 +122,7 @@ public class SignServiceImpl {
                 //3、判断学生有没有二次签到
                 Sign sign1 = signMapper.querySignBySign(sign);
                 if(sign1!=null){
-                    resultMap.put("signState",0);
+                    resultMap.put("signState",2);
                     System.out.println("学生已在正在进行的活动中签到过");
                 }
                 //4、没有二次签到
