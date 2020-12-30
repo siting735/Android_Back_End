@@ -52,15 +52,15 @@ public class StudentServiceImpl {
         //2、学生不在场的活动
         List<String> notPresent = handlerMapper.queryTitleByStudentIdNotPresent(map);
         List<ActivityInfo> activityInfoList = new LinkedList<ActivityInfo>();
-        if(present!=null){
-            for (String str:present) {
-                ActivityInfo activityInfo = new ActivityInfo(str, 1);
-                activityInfoList.add(activityInfo);
-            }
-        }
         if(notPresent!=null){
             for (String str:notPresent) {
                 ActivityInfo activityInfo = new ActivityInfo(str, 0);
+                activityInfoList.add(activityInfo);
+            }
+        }
+        if(present!=null){
+            for (String str:present) {
+                ActivityInfo activityInfo = new ActivityInfo(str, 1);
                 activityInfoList.add(activityInfo);
             }
         }
