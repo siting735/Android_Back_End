@@ -29,7 +29,7 @@ public class ActivityServiceImpl {
             return resultMap;
         }
         resultMap.put("activityId","");
-        resultMap.put("activityTitle","");
+        resultMap.put("activityTitle",null);
         resultMap.put("classId","");
         return resultMap;
     }
@@ -63,7 +63,7 @@ public class ActivityServiceImpl {
         map.put("state",1);
         List<Activity> activityList = activityMapper.queryActivityByClassIdAndState(map);
         resultMap.put("activityId","");
-        resultMap.put("activityTitle","");
+        resultMap.put("activityTitle",null);
         resultMap.put("teacherLongitude","");
         resultMap.put("teacherLatitude","");
         if(activityList.size() >=1 ){
