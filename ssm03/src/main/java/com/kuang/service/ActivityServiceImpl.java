@@ -62,10 +62,10 @@ public class ActivityServiceImpl {
         map.put("classId",classId);
         map.put("state",1);
         List<Activity> activityList = activityMapper.queryActivityByClassIdAndState(map);
-        resultMap.put("activityId",null);
-        resultMap.put("activityTitle",null);
-        resultMap.put("teacherLongitude",null);
-        resultMap.put("teacherLatitude",null);
+        resultMap.put("activityId","");
+        resultMap.put("activityTitle","");
+        resultMap.put("teacherLongitude","");
+        resultMap.put("teacherLatitude","");
         if(activityList.size() >=1 ){
             Activity activity = activityList.get(0);
             resultMap.put("activityId",activity.getActivityId());
