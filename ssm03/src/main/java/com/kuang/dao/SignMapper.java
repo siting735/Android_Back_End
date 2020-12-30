@@ -12,4 +12,5 @@ public interface SignMapper {
     List<ClassStudent> queryStudentNotInActivity(Map<String,Integer> map);
     int insertSign(Sign sign);
     Sign querySignBySign(Sign sign);
+    List<Sign> querySignByMsg(Sign sign);
 }

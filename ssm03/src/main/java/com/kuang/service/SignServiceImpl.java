@@ -119,6 +119,12 @@ public class SignServiceImpl {
             //2、符合范围
             else{
                 Sign sign = new Sign(Integer.parseInt(map.get("activityId").toString()), studentId, deviceId);
+                //5、判断学生用自己的手机给另一位同学签到
+                List<Sign> signs = signMapper.querySignByMsg(sign);
+                if(signs != null){
+                    resultMap.put("signState",3);
+                    return resultMap;
+                }
                 //3、判断学生有没有二次签到
                 Sign sign1 = signMapper.querySignBySign(sign);
                 if(sign1!=null){
