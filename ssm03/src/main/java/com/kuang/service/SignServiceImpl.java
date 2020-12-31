@@ -121,7 +121,10 @@ public class SignServiceImpl {
                 Sign sign = new Sign(Integer.parseInt(map.get("activityId").toString()), studentId, deviceId);
                 //5、判断学生用自己的手机给另一位同学签到
                 List<Sign> signs = signMapper.querySignByMsg(sign);
-                if(signs != null){
+                if(signs.size()>0){
+                    for(Sign s : signs){
+                        System.out.println("=================="+s);
+                    }
                     resultMap.put("signState",3);
                     return resultMap;
                 }
