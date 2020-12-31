@@ -7,14 +7,14 @@
     <select id="queryTitleByStudentIdNotPresent" resultType="string" parameterType="map">
         SELECT activity.title FROM activity where activity.class_id = #{classId} and activity.title not in (
 	SELECT title FROM activity,sign where sign.activity_id = activity.activity_id and
-	activity.activity_id = sign.activity_id and class_id = #{classId} and student_id = #{studentId})
+	activity.activity_id = sign.activity_id and class_id = #{classId} and student_id = #{studentId}) order by title desc
     </select>
 
 
 <!--    List<String> queryTitleByStudentIdPresent(int studentId);-->
     <select id="queryTitleByStudentIdPresent" parameterType="map" resultType="string">
         SELECT title FROM activity,sign where sign.activity_id = activity.activity_id and
-        activity.activity_id = sign.activity_id and class_id = #{classId} and student_id = #{studentId};
+        activity.activity_id = sign.activity_id and class_id = #{classId} and student_id = #{studentId} order by title desc ;
     </select>
 
 
