@@ -109,16 +109,25 @@ public class SignServiceImpl {
                                         Double.parseDouble(studentLatitude));
         if(map.get("activityTitle") ==null){
             resultMap.put("signState",0);
+            return resultMap;
         }
         else {
             //1、先判断符不符合范围
             if(v>200){
                 resultMap.put("signState",0);
                 System.out.println("学生里老师位置超出限制");
+                return  resultMap;
             }
             //2、符合范围
             else{
                 Sign sign = new Sign(Integer.parseInt(map.get("activityId").toString()), studentId, deviceId);
+                //3、判断学生有没有二次签到
+                Sign sign1 = signMapper.querySignBySign(sign);
+                if(sign1!=null){
+                    resultMap.put("signState",2);
+                    System.out.println("学生已在正在进行的活动中签到过");
+                    return resultMap;
+                }
                 //5、判断学生用自己的手机给另一位同学签到
                 List<Sign> signs = signMapper.querySignByMsg(sign);
                 if(signs.size()>0){
@@ -127,12 +136,6 @@ public class SignServiceImpl {
                     }
                     resultMap.put("signState",3);
                     return resultMap;
-                }
-                //3、判断学生有没有二次签到
-                Sign sign1 = signMapper.querySignBySign(sign);
-                if(sign1!=null){
-                    resultMap.put("signState",2);
-                    System.out.println("学生已在正在进行的活动中签到过");
                 }
                 //4、没有二次签到
                 //插入sign表格
@@ -145,10 +148,10 @@ public class SignServiceImpl {
                     System.out.println("学生签到，活动表人数+1");
                     //6、学生表的出席次数+1
                     studentMapper.updateStudentAttendanceTime(studentId);
+                    return  resultMap;
                 }
             }
         }
-        return resultMap;
     }
 }
 
